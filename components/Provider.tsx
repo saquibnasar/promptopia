@@ -1,9 +1,14 @@
-import React from "react";
-export interface Provider {
+"use client";
+
+import { Session } from "inspector";
+import { SessionProvider } from "next-auth/react";
+
+export interface LayoutProps {
   children: React.ReactNode;
 }
-function Provider(props: Provider) {
-  return <>{props.children}</>;
-}
+
+const Provider = ({ children }: LayoutProps) => (
+  <SessionProvider>{children}</SessionProvider>
+);
 
 export default Provider;

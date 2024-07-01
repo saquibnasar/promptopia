@@ -6,17 +6,17 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  //   const { data: session } = useSession();
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  //   useEffect(() => {
-  //     (async () => {
-  //       const res = await getProviders();
-  //       setProviders(res);
-  //     })();
-  //   }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -32,13 +32,13 @@ const Nav = () => {
       </Link>
 
       {/* Desktop Navigation */}
-      {/* <div className="sm:flex hidden">
+      <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
             </Link>
-            
+
             <button type="button" onClick={signOut} className="outline_btn">
               Sign Out
             </button>
@@ -70,11 +70,11 @@ const Nav = () => {
               ))}
           </>
         )}
-      </div> */}
+      </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {/* {session?.user ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src={session?.user.image}
@@ -130,7 +130,7 @@ const Nav = () => {
                 </button>
               ))}
           </>
-        )} */}
+        )}
       </div>
     </nav>
   );
